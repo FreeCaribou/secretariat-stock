@@ -1,0 +1,31 @@
+{% macro render_language_selector(display_current_language = true) %}
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#changeLanguageModal">
+        {{'general.lang' | trans }} <i class="bi bi-globe"></i>
+    </button>
+
+    <div id="changeLanguageModal" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-lg modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title" lang="en">
+                        {# display this title always in English to make the language selector easier to use #}
+                        {{'general.changeLanguage' | trans}} - Choose your language
+                    </p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="list-group">
+                        {% for locale in locales() %}
+                            {% set is_active = app.locale == locale.code %}
+                            <a class="list-group-item list-group-item-action {{ is_active ? 'active' }}" lang="{{ locale.code }}" hreflang="{{ locale.code }}" href="{{ path(app.current_route ?? 'stored_thing', app.current_route_parameters|merge({_locale: locale.code})) }}">
+                                {{ locale.name|capitalize }}
+                                <small>{{ locale.code }}</small>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}

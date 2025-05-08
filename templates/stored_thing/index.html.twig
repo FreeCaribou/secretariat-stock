@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <h1 class="text-primary">All available items on the store</h1>
+    <h1 class="text-primary">{{'storedThing.allItemsInStore' | trans}}</h1>
 
     <div class="mb-5">
     {% for storedThing in storedThings %}
@@ -12,18 +12,14 @@
                 <p class="card-text">{{ storedThing.description }}</p>
             </div>
             <div class="card-footer">
-                {{ storedThing.baseAmount }} in base stock
+                {{'storedThing.baseAmountInStore' | trans({'baseAmount': storedThing.baseAmount})}}
             </div>
-        </div>
-    {% else %}
-        <div>
-            There is no items
         </div>
     {% endfor %}
     </div>
 
     <div>
-    <h1 class="text-primary">Add a new item</h1>
+    <h1 class="text-primary">{{'storedThing.add.label' | trans}}</h1>
         {{ form(form) }}
     </div>
 

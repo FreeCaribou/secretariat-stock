@@ -13,11 +13,11 @@ use Doctrine\ORM\EntityManagerInterface;
 
 // TODO refactor to divide the action in other php file
 
-class HomeController extends AbstractController
+class StoredThingController extends AbstractController
 {
 
-    #[Route('/', name: 'home', methods: ['GET', 'POST'])]
-    public function home(StoredThingRepository $repo, Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/stored-thing', name: 'stored_thing', methods: ['GET', 'POST'])]
+    public function storedThing(StoredThingRepository $repo, Request $request, EntityManagerInterface $entityManager): Response
     {
         // The form to add a new stored thing
         $storedThing = new StoredThing();
@@ -30,13 +30,13 @@ class HomeController extends AbstractController
             $entityManager->persist($storedThing);
             $entityManager->flush();
             $this->addFlash('success', 'storedThing.add.success');
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('stored_thing');
         }
 
         // All the stored thing in the store
         $storedThings = $repo->findAll();
 
-        return $this->render('home/index.html.twig', [
+        return $this->render('stored_thing/index.html.twig', [
             'storedThings' => $storedThings,
             'form' => $form,
         ]);

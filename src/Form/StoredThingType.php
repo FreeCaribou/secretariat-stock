@@ -16,10 +16,10 @@ class StoredThingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('label', TextType::class)
-            ->add('description', TextType::class)
-            ->add('baseAmount', NumberType::class)
-            ->add('save', SubmitType::class);
+            ->add('label', TextType::class, ['label' => 'form.label.label'])
+            ->add('description', TextType::class, ['label' => 'form.label.description'])
+            ->add('baseAmount', NumberType::class, ['label' => 'form.label.baseAmount'])
+            ->add('save', SubmitType::class, ['label' => 'form.label.save']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

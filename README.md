@@ -4,7 +4,6 @@ Just a little app to manage items physicaly stored in a secretariat and voluntee
 
 ## TODO for v1
 
-- I18N
 - Simple log in session without role or user
 - Change an item (for the base amount for exemple)
 - Make a command of item
@@ -16,6 +15,8 @@ Just a little app to manage items physicaly stored in a secretariat and voluntee
 - Log in with user and role to better manage
 - A user can make himself a command and send email
 - Link the user to another external DB
+- Data base in i18n with Doctrine
+- Better CSS and color
 
 ## Stack
 
